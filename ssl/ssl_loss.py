@@ -5,9 +5,7 @@ def sslLoss(output, target, dists, lambd=1, sigma=0.01):
     # compute sup_loss only on non-zero targets indices
     sup_ids = (target != -1).nonzero()[:, 0]
     sup_loss = criterion(output[sup_ids], target[sup_ids].float())  # scalar
-    ssl_loss = (
-        torch.zeros_like(target).to(device).type_as(sup_loss)
-    )
+    ssl_loss = torch.zeros_like(target).to(device).type_as(sup_loss)
 
     dists = dists.type_as(sup_loss)
     target = target.type_as(sup_loss)
