@@ -7,7 +7,7 @@ def sslLoss(output, target, dists, lambd=1, sigma=0.01):
     sup_loss = criterion(output[sup_ids], target[sup_ids].float())  # scalar
     ssl_loss = (
         torch.zeros_like(target).to(device).type_as(sup_loss)
-    )  # (((target - output) * target) ** 2)
+    )
 
     dists = dists.type_as(sup_loss)
     target = target.type_as(sup_loss)
